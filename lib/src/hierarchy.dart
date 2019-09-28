@@ -31,7 +31,7 @@ abstract class Monoid_<S> implements Semigroup_<S> {
   S identity();
 }
 
-class AnonymousMonoid<S> implements Monoid_<S> {
+class AnonymousMonoid<S> with MonoidOps<S> {
   final S Function() _identity;
   final S Function(S a, S b) _operate;
 
@@ -44,18 +44,18 @@ class AnonymousMonoid<S> implements Monoid_<S> {
   S operate(S a, S b) => _operate(a, b);
 }
 
-mixin MonoidOps<T> implements Monoid_<T> {
-  FocusedMonoid of(T t) => FocusedMonoid(t, this);
+mixin MonoidOps<S> implements Monoid_<S> {
+  FocusedMonoid of(S t) => FocusedMonoid(t, this);
 }
 
 class FocusedMonoid<T> {
   final T value;
 
-  final Monoid_<T> field;
+  final Monoid_<T> monoid;
 
-  const FocusedMonoid(this.value, this.field);
+  const FocusedMonoid(this.value, this.monoid);
 
-  T operator *(T t) => field.operate(value, t);
+  T operator *(T t) => monoid.operate(value, t);
 }
 
 /// https://en.wikipedia.org/wiki/Group_(mathematics)
@@ -68,7 +68,7 @@ abstract class Group_<S> implements Monoid_<S> {
   S inverse(S a, S b);
 }
 
-class AnonymousGroup<S> implements Group_<S> {
+class AnonymousGroup<S> with GroupOps<S> {
   final S Function() _identity;
   final S Function(S a, S b) _operate;
   final S Function(S a, S b) _inverse;
@@ -111,6 +111,19 @@ abstract class Field_<A> {
   Group_<A> get multiplication;
 }
 
+class AnonymousField<S> with FieldOps<S> {
+  final Group_<S> _addition;
+  final Group_<S> _multiplication;
+
+  const AnonymousField(this._addition, this._multiplication);
+
+  @override
+  Group_<S> get addition => _addition;
+
+  @override
+  Group_<S> get multiplication => _multiplication;
+}
+
 mixin FieldOps<T> implements Field_<T> {
   T add(T a, T b) => addition.operate(a, b);
 
@@ -137,17 +150,4 @@ class FocusedField<T> {
   T operator *(T t) => field.multiplication.operate(value, t);
 
   T operator /(T t) => field.multiplication.inverse(value, t);
-}
-
-class AnonymousField<S> implements Field_<S> {
-  final Group_<S> _addition;
-  final Group_<S> _multiplication;
-
-  const AnonymousField(this._addition, this._multiplication);
-
-  @override
-  Group_<S> get addition => _addition;
-
-  @override
-  Group_<S> get multiplication => _multiplication;
 }
