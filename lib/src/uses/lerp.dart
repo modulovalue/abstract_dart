@@ -1,7 +1,13 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
-class FieldLerp<T> {
+abstract class Lerp<T> {
+    T lerp(T t);
+
+    T reLerp(T t);
+}
+
+class FieldLerp<T> implements Lerp<T> {
   final T from;
   final T to;
   final Field_<T> field;
@@ -12,6 +18,7 @@ class FieldLerp<T> {
         assert(field != null);
 
   /// Linearly interpolate between [from] and [to].
+  @override
   T lerp(T t) => field.addition.operate(
         field.addition.inverse(
           from,
@@ -26,6 +33,7 @@ class FieldLerp<T> {
   ///     to = 20
   ///     reLerp(15) // gives 0.5
   ///
+  @override
   T reLerp(T t) => field.multiplication.inverse(
         field.addition.inverse(t, from),
         field.addition.inverse(to, from),
