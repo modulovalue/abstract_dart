@@ -23,40 +23,32 @@ void main() {
           const DecimalProductGroup()
               .inverse(Decimal.fromInt(6), Decimal.fromInt(3)),
           Decimal.fromInt(2));
-      expect(() => const DecimalProductGroup()
-              .inverse(Decimal.fromInt(6), Decimal.fromInt(0)), throwsA(const TypeMatcher<ArgumentError>()));
+      expect(
+          () => const DecimalProductGroup()
+              .inverse(Decimal.fromInt(6), Decimal.fromInt(0)),
+          throwsA(const TypeMatcher<ArgumentError>()));
     });
   });
   group("DoubleProductGroup", () {
     test("inverse", () {
-      expect(
-          const DoubleProductGroup()
-              .inverse(6.0, 3.0), 2.0);
-      expect(const DoubleProductGroup()
-              .inverse(6.0, 0.0), double.infinity);
+      expect(const DoubleProductGroup().inverse(6.0, 3.0), 2.0);
+      expect(const DoubleProductGroup().inverse(6.0, 0.0), double.infinity);
     });
   });
   group("DoubleSumGroup", () {
     test("inverse", () {
-      expect(
-          const DoubleSumGroup()
-              .inverse(6, 2), 4);
+      expect(const DoubleSumGroup().inverse(6, 2), 4);
     });
   });
   group("NumProductGroup", () {
     test("inverse", () {
-      expect(
-          const NumProductGroup()
-              .inverse(6, 3), 2);
-      expect(const NumProductGroup()
-              .inverse(6, 0), double.infinity);
+      expect(const NumProductGroup().inverse(6, 3), 2);
+      expect(const NumProductGroup().inverse(6, 0), double.infinity);
     });
   });
   group("NumSumGroup", () {
     test("inverse", () {
-      expect(
-          const NumSumGroup()
-              .inverse(6, 2), 4);
+      expect(const NumSumGroup().inverse(6, 2), 4);
     });
   });
 }
