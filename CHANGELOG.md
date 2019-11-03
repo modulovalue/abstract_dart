@@ -1,3 +1,7 @@
+## 1.0.1 (2019-11-03)
+
+- IntSumGroup added
+
 ## 1.0.0 (2019-11-03)
 
 - complete rewrite, 100% coverage

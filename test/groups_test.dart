@@ -5,6 +5,11 @@ import 'package:test/test.dart';
 // so coverage catches constructors
 //ignore_for_file: prefer_const_constructors
 void main() {
+  group("IntSumGroup", () {
+    test("inverse", () {
+      expect(IntSumGroup().inverse(1, 2), -1);
+    });
+  });
   group("BigIntSumGroup", () {
     test("inverse", () {
       expect(BigIntSumGroup().inverse(BigInt.from(1), BigInt.from(2)),

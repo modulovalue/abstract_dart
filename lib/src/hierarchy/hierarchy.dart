@@ -71,6 +71,7 @@ class _AnonymousMonoid<S> implements Monoid_<S> {
 /// called group axioms are satisfied, namely closure, associativity, identity
 /// and invertibility.
 ///
+/// * [IntSumGroup]
 /// * [BigIntSumGroup]
 /// * [DecimalProductGroup]
 /// * [DecimalSumGroup]

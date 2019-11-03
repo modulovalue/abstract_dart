@@ -1,6 +1,13 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
+class IntSumGroup extends IntSumMonoid implements Group_<int> {
+  const IntSumGroup();
+
+  @override
+  int inverse(int a, int b) => a - b;
+}
+
 class BigIntSumGroup extends BigIntSumMonoid implements Group_<BigInt> {
   const BigIntSumGroup();
 

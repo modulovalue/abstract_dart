@@ -31,6 +31,7 @@ void main() {
   const doubleProductMonoid = DoubleProductMonoid();
 
   /// Groups
+  const intSumGroup = IntSumGroup();
   const bigIntSumGroup = BigIntSumGroup();
   const decimalSumGroup = DecimalSumGroup();
   const decimalProductGroup = DecimalProductGroup();
@@ -50,6 +51,7 @@ void main() {
     monoid,
     group,
     field,
+    intSumGroup,
     bigIntSumMonoid,
     bigIntProductMonoid,
     decimalSumMonoid,

@@ -4,7 +4,7 @@ author: Modestas Valauskas <valauskasmodestas+dartpub@gmail.com>
 homepage: https://github.com/modulovalue/abstract_dart
 repository: https://github.com/modulovalue/abstract_dart
 issue_tracker: https://github.com/modulovalue/abstract_dart/issues
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: '>=2.4.4 <3.0.0'
