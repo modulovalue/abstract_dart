@@ -2,11 +2,13 @@ import 'package:abstract_dart/src/implementation/fields.dart';
 import 'package:decimal/decimal.dart';
 import 'package:test/test.dart';
 
+// so coverage catches constructors
+//ignore_for_file: prefer_const_constructors
 void main() {
   group("$DecimalField", () {
     test("addition", () {
       expect(
-          const DecimalField()
+          DecimalField()
               .addition
               .operate(Decimal.fromInt(3), Decimal.fromInt(5)),
           Decimal.fromInt(8));
@@ -21,7 +23,7 @@ void main() {
   });
   group("$DoubleField", () {
     test("addition", () {
-      expect(const DoubleField().addition.operate(3, 5), 8);
+      expect(DoubleField().addition.operate(3, 5), 8);
     });
     test("multiplication", () {
       expect(const DoubleField().multiplication.operate(3, 5), 15);
@@ -29,7 +31,7 @@ void main() {
   });
   group("$NumField", () {
     test("addition", () {
-      expect(const NumField().addition.operate(3, 5), 8);
+      expect(NumField().addition.operate(3, 5), 8);
     });
     test("multiplication", () {
       expect(const NumField().multiplication.operate(3, 5), 15);

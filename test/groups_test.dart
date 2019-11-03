@@ -2,26 +2,25 @@ import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 import 'package:test/test.dart';
 
+// so coverage catches constructors
+//ignore_for_file: prefer_const_constructors
 void main() {
   group("BigIntSumGroup", () {
     test("inverse", () {
-      expect(const BigIntSumGroup().inverse(BigInt.from(1), BigInt.from(2)),
+      expect(BigIntSumGroup().inverse(BigInt.from(1), BigInt.from(2)),
           BigInt.from(-1));
     });
   });
   group("DecimalSumGroup", () {
     test("inverse", () {
-      expect(
-          const DecimalSumGroup()
-              .inverse(Decimal.fromInt(1), Decimal.fromInt(2)),
+      expect(DecimalSumGroup().inverse(Decimal.fromInt(1), Decimal.fromInt(2)),
           Decimal.fromInt(-1));
     });
   });
   group("DecimalProductGroup", () {
     test("inverse", () {
       expect(
-          const DecimalProductGroup()
-              .inverse(Decimal.fromInt(6), Decimal.fromInt(3)),
+          DecimalProductGroup().inverse(Decimal.fromInt(6), Decimal.fromInt(3)),
           Decimal.fromInt(2));
       expect(
           () => const DecimalProductGroup()
@@ -31,24 +30,24 @@ void main() {
   });
   group("DoubleProductGroup", () {
     test("inverse", () {
-      expect(const DoubleProductGroup().inverse(6.0, 3.0), 2.0);
+      expect(DoubleProductGroup().inverse(6.0, 3.0), 2.0);
       expect(const DoubleProductGroup().inverse(6.0, 0.0), double.infinity);
     });
   });
   group("DoubleSumGroup", () {
     test("inverse", () {
-      expect(const DoubleSumGroup().inverse(6, 2), 4);
+      expect(DoubleSumGroup().inverse(6, 2), 4);
     });
   });
   group("NumProductGroup", () {
     test("inverse", () {
-      expect(const NumProductGroup().inverse(6, 3), 2);
+      expect(NumProductGroup().inverse(6, 3), 2);
       expect(const NumProductGroup().inverse(6, 0), double.infinity);
     });
   });
   group("NumSumGroup", () {
     test("inverse", () {
-      expect(const NumSumGroup().inverse(6, 2), 4);
+      expect(NumSumGroup().inverse(6, 2), 4);
     });
   });
 }
