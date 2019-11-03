@@ -1,7 +1,7 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
-class DecimalField with FieldOps<Decimal> {
+class DecimalField implements Field_<Decimal> {
   const DecimalField();
 
   @override
@@ -12,7 +12,7 @@ class DecimalField with FieldOps<Decimal> {
 }
 
 // unsafe
-class DoubleField with FieldOps<double> {
+class DoubleField implements Field_<double> {
   const DoubleField();
 
   @override
@@ -23,7 +23,7 @@ class DoubleField with FieldOps<double> {
 }
 
 // unsafe
-class NumField with FieldOps<num> {
+class NumField implements Field_<num> {
   const NumField();
 
   @override

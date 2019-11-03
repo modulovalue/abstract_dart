@@ -1,7 +1,7 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
-class BigIntSumMonoid with MonoidOps<BigInt> {
+class BigIntSumMonoid implements Monoid_<BigInt> {
   const BigIntSumMonoid();
 
   @override
@@ -11,7 +11,7 @@ class BigIntSumMonoid with MonoidOps<BigInt> {
   BigInt operate(BigInt a, BigInt b) => a + b;
 }
 
-class BigIntProductMonoid with MonoidOps<BigInt> {
+class BigIntProductMonoid implements Monoid_<BigInt> {
   const BigIntProductMonoid();
 
   @override
@@ -21,7 +21,7 @@ class BigIntProductMonoid with MonoidOps<BigInt> {
   BigInt operate(BigInt a, BigInt b) => a * b;
 }
 
-class DecimalSumMonoid with MonoidOps<Decimal> {
+class DecimalSumMonoid implements Monoid_<Decimal> {
   const DecimalSumMonoid();
 
   @override
@@ -31,7 +31,7 @@ class DecimalSumMonoid with MonoidOps<Decimal> {
   Decimal operate(Decimal a, Decimal b) => a + b;
 }
 
-class DecimalProductMonoid with MonoidOps<Decimal> {
+class DecimalProductMonoid implements Monoid_<Decimal> {
   const DecimalProductMonoid();
 
   @override
@@ -41,7 +41,7 @@ class DecimalProductMonoid with MonoidOps<Decimal> {
   Decimal operate(Decimal a, Decimal b) => a * b;
 }
 
-class StringConcatMonoid with MonoidOps<String> {
+class StringConcatMonoid implements Monoid_<String> {
   const StringConcatMonoid();
 
   @override
@@ -52,29 +52,29 @@ class StringConcatMonoid with MonoidOps<String> {
 }
 
 // Unsafe
-class NumSumMonoid with MonoidOps<num> {
+class NumSumMonoid implements Monoid_<num> {
   const NumSumMonoid();
 
   @override
-  num identity() => 0;
+  num identity() => 0.0;
 
   @override
   num operate(num a, num b) => a + b;
 }
 
 // Unsafe
-class NumProductMonoid with MonoidOps<num> {
+class NumProductMonoid implements Monoid_<num> {
   const NumProductMonoid();
 
   @override
-  num identity() => 1;
+  num identity() => 1.0;
 
   @override
   num operate(num a, num b) => a * b;
 }
 
 // Unsafe
-class IntSumMonoid with MonoidOps<int> {
+class IntSumMonoid implements Monoid_<int> {
   const IntSumMonoid();
 
   @override
@@ -85,7 +85,7 @@ class IntSumMonoid with MonoidOps<int> {
 }
 
 // Unsafe
-class IntProductMonoid with MonoidOps<int> {
+class IntProductMonoid implements Monoid_<int> {
   const IntProductMonoid();
 
   @override
@@ -96,7 +96,7 @@ class IntProductMonoid with MonoidOps<int> {
 }
 
 // Unsafe
-class DoubleSumMonoid with MonoidOps<double> {
+class DoubleSumMonoid implements Monoid_<double> {
   const DoubleSumMonoid();
 
   @override
@@ -107,7 +107,7 @@ class DoubleSumMonoid with MonoidOps<double> {
 }
 
 // Unsafe
-class DoubleProductMonoid with MonoidOps<double> {
+class DoubleProductMonoid implements Monoid_<double> {
   const DoubleProductMonoid();
 
   @override

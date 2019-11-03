@@ -1,105 +1,58 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
-class BigIntSumGroup with GroupOps<BigInt> {
+class BigIntSumGroup extends BigIntSumMonoid implements Group_<BigInt> {
   const BigIntSumGroup();
-
-  @override
-  BigInt identity() => BigInt.zero;
-
-  @override
-  BigInt operate(BigInt a, BigInt b) => a + b;
 
   @override
   BigInt inverse(BigInt a, BigInt b) => a - b;
 }
 
-class DecimalProductGroup with GroupOps<Decimal> {
-  const DecimalProductGroup();
-
-  @override
-  Decimal identity() => Decimal.one;
-
-  @override
-  Decimal operate(Decimal a, Decimal b) => a * b;
-
-  @override
-  Decimal inverse(Decimal a, Decimal b) {
-    if (b == Decimal.zero) ArgumentError("b can't be 0");
-    return a / b;
-  }
-}
-
-class DecimalSumGroup with GroupOps<Decimal> {
+class DecimalSumGroup extends DecimalSumMonoid implements Group_<Decimal> {
   const DecimalSumGroup();
-
-  @override
-  Decimal identity() => Decimal.zero;
-
-  @override
-  Decimal operate(Decimal a, Decimal b) => a + b;
 
   @override
   Decimal inverse(Decimal a, Decimal b) => a - b;
 }
 
-// unsafe
-class DoubleProductGroup with GroupOps<double> {
-  const DoubleProductGroup();
+/// Note: division by zero throws an [ArgumentError] exception.
+class DecimalProductGroup extends DecimalProductMonoid
+    implements Group_<Decimal> {
+  const DecimalProductGroup();
 
   @override
-  double identity() => 1.0;
-
-  @override
-  double operate(double a, double b) => a * b;
-
-  @override
-  double inverse(double a, double b) {
-    if (b == 0.0) ArgumentError("b can't be 0");
-    return a / b;
-  }
+  Decimal inverse(Decimal a, Decimal b) => a / b;
 }
 
 // unsafe
-class DoubleSumGroup with GroupOps<double> {
+/// Note: division by zero results in double.infinity.
+class DoubleProductGroup extends DoubleProductMonoid implements Group_<double> {
+  const DoubleProductGroup();
+
+  @override
+  double inverse(double a, double b) => a / b;
+}
+
+// unsafe
+class DoubleSumGroup extends DoubleSumMonoid implements Group_<double> {
   const DoubleSumGroup();
-
-  @override
-  double identity() => 0;
-
-  @override
-  double operate(double a, double b) => a + b;
 
   @override
   double inverse(double a, double b) => a - b;
 }
 
 // unsafe
-class NumProductGroup with GroupOps<num> {
+/// Note: division by zero results in double.infinity.
+class NumProductGroup extends NumProductMonoid implements Group_<num> {
   const NumProductGroup();
 
   @override
-  num identity() => 1.0;
-
-  @override
-  num operate(num a, num b) => a * b;
-
-  @override
-  num inverse(num a, num b) {
-    if (b == 0.0) ArgumentError("b can't be 0");
-    return a / b;
-  }
+  num inverse(num a, num b) => a / b;
 }
 
 // unsafe
-class NumSumGroup with GroupOps<num> {
+class NumSumGroup extends NumSumMonoid implements Group_<num> {
   const NumSumGroup();
-
-  @override
-  num identity() => 0;
-
-  @override
-  num operate(num a, num b) => a + b;
 
   @override
   num inverse(num a, num b) => a - b;
