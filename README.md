@@ -4,37 +4,6 @@
 
 A collection of algebraic structures borrowed from abstract algebra. Semigroup, Monoid, Group, Field, and more. 
 
-## `Semigroup_<A>`
-- An operation of type A+A => A
-
-## `Monoid_<A>` (a Semigroup<A>)
-- An operation of type A+A => A
-- An identity element so that a+e = a
-
-## `Group_<A>` (a Monoid_<A>, a Semigroup<A>)
-- An operation of type A+A => A
-- An inverse operation of type A-A => A
-- An identity element so that a+e = a
-
-## `Field_<A>`
-- A Group<A> (addition)
-- A Group<A> (multiplication)
-
-## `ScalarMonoid_<K, F>`
-- An operation of type K•F => K
-- An identity element so that K•e = K
-
-## `VectorSpace_<K, F>`
-- A Group<K> (addition)
-- A ScalarMonoid<K, F> (scalar multiplication)
-
-## `Algebra_<K, F>` (a VectorSpace_<K, F>, a Field_<K>)
-- A Group<K> (addition)
-- A Group<K> (multiplication)
-- A ScalarMonoid<K, F> (scalar multiplication)
-
-abstract_dart does not enforce any of the properties that these structures require in a mathematical setting.
-
 Example:
 ```dart
 /// Create a semigroup
@@ -80,3 +49,34 @@ const decimalField = DecimalField();
 const doubleField = DoubleField();
 const numField = NumField();
 ```
+
+#### `Semigroup_<A>`
+- An operation of type A+A => A
+
+#### `Monoid_<A>` (a Semigroup<A>)
+- An operation of type A+A => A
+- An identity element so that a+e = a
+
+#### `Group_<A>` (a Monoid_<A>, a Semigroup<A>)
+- An operation of type A+A => A
+- An inverse operation of type A-A => A
+- An identity element so that a+e = a
+
+#### `Field_<A>`
+- A Group<A> (addition)
+- A Group<A> (multiplication)
+
+#### `ScalarMonoid_<K, F>`
+- An operation of type K•F => K
+- An identity element so that K•e = K
+
+#### `VectorSpace_<K, F>`
+- A Group<K> (addition)
+- A ScalarMonoid<K, F> (scalar multiplication)
+
+#### `Algebra_<K, F>` (a VectorSpace_<K, F>, a Field_<K>)
+- A Group<K> (addition)
+- A Group<K> (multiplication)
+- A ScalarMonoid<K, F> (scalar multiplication)
+
+abstract_dart does not enforce any of the properties that these structures require in a mathematical setting.
