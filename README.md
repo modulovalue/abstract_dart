@@ -53,11 +53,11 @@ const numField = NumField();
 #### `Semigroup_<A>`
 - An operation of type A+A => A
 
-#### `Monoid_<A>` (a Semigroup_<A>)
+#### `Monoid_<A>` (a `Semigroup_<A>`)
 - An operation of type A+A => A
 - An identity element so that a+e = a
 
-#### `Group_<A>` (a Monoid_<A>, a Semigroup_<A>)
+#### `Group_<A>` (a `Monoid_<A>`, a `Semigroup_<A>`)
 - An operation of type A+A => A
 - An inverse operation of type A-A => A
 - An identity element so that a+e = a
@@ -74,7 +74,7 @@ const numField = NumField();
 - A Group<K> (addition)
 - A ScalarMonoid<K, F> (scalar multiplication)
 
-#### `Algebra_<K, F>` (a VectorSpace_<K, F>, a Field_<K>)
+#### `Algebra_<K, F>` (a `VectorSpace_<K, F>`, a `Field_<K>`)
 - A Group<K> (addition)
 - A Group<K> (multiplication)
 - A ScalarMonoid<K, F> (scalar multiplication)
