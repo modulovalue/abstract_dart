@@ -1,6 +1,7 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
+// unsafe
 class BigIntSumMonoid implements Monoid_<BigInt> {
   const BigIntSumMonoid();
 
@@ -115,4 +116,15 @@ class DoubleProductMonoid implements Monoid_<double> {
 
   @override
   double operate(double a, double b) => a * b;
+}
+
+// Unsafe
+class DurationSumMonoid implements Monoid_<Duration> {
+  const DurationSumMonoid();
+
+  @override
+  Duration identity() => Duration.zero;
+
+  @override
+  Duration operate(Duration a, Duration b) => a + b;
 }

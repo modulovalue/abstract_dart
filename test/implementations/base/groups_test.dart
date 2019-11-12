@@ -55,4 +55,12 @@ void main() {
       expect(NumSumGroup().inverse(6, 2), 4);
     });
   });
+  group("DurationSumGroup", () {
+    test("inverse", () {
+      expect(
+          DurationSumGroup().inverse(
+              Duration(milliseconds: 500), Duration(milliseconds: 400)),
+          Duration(milliseconds: 100));
+    });
+  });
 }

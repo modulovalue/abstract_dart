@@ -1,3 +1,8 @@
+## 1.0.2 (2019-11-12)
+
+- ScalarMonoid_, VectorSpace_ & Algebra_ added
+- DurationVectorSpace, DurationScalarMonoid, DurationSumGroup and DurationSumMonoid added
+
 ## 1.0.1 (2019-11-03)
 
 - IntSumGroup added

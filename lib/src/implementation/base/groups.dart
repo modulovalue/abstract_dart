@@ -1,6 +1,7 @@
 import 'package:abstract_dart/abstract_dart.dart';
 import 'package:decimal/decimal.dart';
 
+// unsafe
 class IntSumGroup extends IntSumMonoid implements Group_<int> {
   const IntSumGroup();
 
@@ -63,4 +64,12 @@ class NumSumGroup extends NumSumMonoid implements Group_<num> {
 
   @override
   num inverse(num a, num b) => a - b;
+}
+
+// unsafe
+class DurationSumGroup extends DurationSumMonoid implements Group_<Duration> {
+  const DurationSumGroup();
+
+  @override
+  Duration inverse(Duration a, Duration b) => a - b;
 }

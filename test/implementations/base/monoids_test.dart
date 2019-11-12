@@ -77,6 +77,15 @@ void main() {
     });
     testIdentity(7.0, const DoubleProductMonoid());
   });
+  group("DurationSumMonoid", () {
+    test("operate", () {
+      expect(
+          DurationSumMonoid().operate(
+              Duration(milliseconds: 100), Duration(milliseconds: 200)),
+          Duration(milliseconds: 300));
+    });
+    testIdentity(Duration(milliseconds: 0), const DurationSumMonoid());
+  });
 }
 
 void testIdentity<T>(T value, Monoid_<T> monoid) {

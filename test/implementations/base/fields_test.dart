@@ -1,4 +1,4 @@
-import 'package:abstract_dart/src/implementation/fields.dart';
+import 'package:abstract_dart/src/implementation/base/fields.dart';
 import 'package:decimal/decimal.dart';
 import 'package:test/test.dart';
 
