@@ -53,11 +53,11 @@ const numField = NumField();
 #### `Semigroup_<A>`
 - An operation of type A+A => A
 
-#### `Monoid_<A>` (a Semigroup<A>)
+#### `Monoid_<A>` (a Semigroup_<A>)
 - An operation of type A+A => A
 - An identity element so that a+e = a
 
-#### `Group_<A>` (a Monoid_<A>, a Semigroup<A>)
+#### `Group_<A>` (a Monoid_<A>, a Semigroup_<A>)
 - An operation of type A+A => A
 - An inverse operation of type A-A => A
 - An identity element so that a+e = a
