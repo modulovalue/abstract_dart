@@ -1,4 +1,3 @@
-
 import 'package:abstract_dart/abstract_dart.dart';
 
 class AnonymousSemigroup<S> implements Semigroup_<S> {
@@ -28,7 +27,11 @@ class AnonymousGroup<S> implements Group_<S> {
   final S Function(S a, S b) _operate;
   final S Function(S a, S b) _inverse;
 
-  const AnonymousGroup(this._identity, this._operate, this._inverse);
+  const AnonymousGroup(
+    this._identity,
+    this._operate,
+    this._inverse,
+  );
 
   @override
   S identity() => _identity();
@@ -106,7 +109,10 @@ class AnonymousScalarMonoid<K, F> implements ScalarMonoid_<K, F> {
   final F Function() _scalarIndentity;
   final K Function(K vector, F scalar) _scalarMultiplication;
 
-  const AnonymousScalarMonoid(this._scalarIndentity, this._scalarMultiplication);
+  const AnonymousScalarMonoid(
+    this._scalarIndentity,
+    this._scalarMultiplication,
+  );
 
   @override
   F sIdentity() => _scalarIndentity();
