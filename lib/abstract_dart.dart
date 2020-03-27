@@ -10,9 +10,9 @@
 library abstract_dart;
 
 export 'src/hierarchy/base.dart';
+export 'src/hierarchy/combined.dart';
 export 'src/hierarchy/scalar.dart';
 export 'src/implementation/base/fields.dart';
 export 'src/implementation/base/groups.dart';
 export 'src/implementation/base/monoids.dart';
-export 'src/implementation/scalar/algebras.dart';
 export 'src/implementation/scalar/vector_spaces.dart';

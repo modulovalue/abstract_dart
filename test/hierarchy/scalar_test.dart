@@ -44,29 +44,29 @@ const _Tuple2<double, double> one = _Tuple2(1.0, 1.0);
 const _Tuple2<double, double> threefive = _Tuple2(3.0, 5.0);
 const _Tuple2<double, double> elevenfifteen = _Tuple2(11.0, 15.0);
 
-Group_<_Tuple2<double, double>> _addition = Group_.create(
+Group_<_Tuple2<double, double>> _addition = Group_.define(
   () => const _Tuple2(0.0, 0.0),
   (a, b) => _Tuple2(a.key + b.key, a.value + b.value),
   (a, b) => _Tuple2(a.key - b.key, a.value - b.value),
 );
 
-Group_<_Tuple2<double, double>> _multiplication = Group_.create(
+Group_<_Tuple2<double, double>> _multiplication = Group_.define(
   () => const _Tuple2(0.0, 0.0),
   (a, b) => _Tuple2(a.key * b.key, a.value * b.value),
   (a, b) => _Tuple2(a.key / b.key, a.value / b.value),
 );
 
 ScalarMonoid_<_Tuple2<double, double>, double> _scalarMultiplication =
-    ScalarMonoid_.create(() => 1.0, (a, b) => _Tuple2(a.key * b, a.value * b));
+    ScalarMonoid_.define(() => 1.0, (a, b) => _Tuple2(a.key * b, a.value * b));
 
 VectorSpace_<_Tuple2<double, double>, double> testVectorSpace =
-    VectorSpace_.create(
+    VectorSpace_.define(
   _addition,
   _scalarMultiplication,
 );
 
-Algebra_<_Tuple2<double, double>, double> testAlgebra = Algebra_.create(
-  Field_.create(_addition, _multiplication),
+Algebra_<_Tuple2<double, double>, double> testAlgebra = Algebra_.define(
+  Field_.define(_addition, _multiplication),
   _scalarMultiplication,
 );
 
