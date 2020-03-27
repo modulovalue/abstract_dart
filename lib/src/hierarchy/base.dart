@@ -7,18 +7,10 @@ import 'package:abstract_dart/abstract_dart.dart';
 ///
 /// * Each [Monoid_] is a [Semigroup_]
 ///
-/// A [Semigroup_] is a special space of a [ScalarSemigroup_] where K and F
-/// are the same sets. But in practice this
-///
 abstract class Semigroup_<S> {
-  @Deprecated("use define")
   static Semigroup_<S> create<S>(S Function(S a, S b) operation) {
     return _AnonymousSemigroup(operation);
   }
-
-  const factory Semigroup_.define(
-    S Function(S a, S b) operation,
-  ) = _AnonymousSemigroup;
 
   S operate(S a, S b);
 }
@@ -51,15 +43,10 @@ class _AnonymousSemigroup<S> implements Semigroup_<S> {
 /// * Each [Group_] is a [Monoid_]
 ///
 abstract class Monoid_<S> implements Semigroup_<S> {
-  @Deprecated("use define")
-  static Monoid_<S> create<S>(S Function() identity, S Function(S a, S b) operation) {
+  static Monoid_<S> create<S>(
+      S Function() identity, S Function(S a, S b) operation) {
     return _AnonymousMonoid(identity, operation);
   }
-
-  const factory Monoid_.define(
-    S Function() identity,
-    S Function(S a, S b) operation,
-  ) = _AnonymousMonoid;
 
   S identity();
 }
@@ -95,18 +82,12 @@ class _AnonymousMonoid<S> implements Monoid_<S> {
 /// * Each [Field_] contains two [Group_]s
 ///
 abstract class Group_<S> implements Monoid_<S> {
-  @Deprecated("use define")
-  static Group_<S> create<S>(S Function() identity, S Function(S, S) operate, S Function(S, S) inverse) {
+  S inverse(S a, S b);
+
+  static Group_<S> create<S>(S Function() identity, S Function(S, S) operate,
+      S Function(S, S) inverse) {
     return _AnonymousGroup(identity, operate, inverse);
   }
-
-  const factory Group_.define(
-    S Function() identity,
-    S Function(S, S) operate,
-    S Function(S, S) inverse,
-  ) = _AnonymousGroup;
-
-  S inverse(S a, S b);
 }
 
 class _AnonymousGroup<S> implements Group_<S> {
@@ -136,15 +117,9 @@ class _AnonymousGroup<S> implements Group_<S> {
 /// * [NumField]
 ///
 abstract class Field_<A> {
-  @Deprecated("use define")
   static Field_<S> create<S>(Group_<S> addition, Group_<S> multiplication) {
     return _AnonymousField(addition, multiplication);
   }
-
-  const factory Field_.define(
-    Group_<A> addition,
-    Group_<A> multiplication,
-  ) = _AnonymousField;
 
   Group_<A> get addition;
 

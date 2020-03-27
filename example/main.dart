@@ -2,19 +2,19 @@ import 'package:abstract_dart/abstract_dart.dart';
 
 void main() {
   /// Create a semigroup
-  final semigroup = Semigroup_<double>.define((a, b) => a + b);
+  final semigroup = Semigroup_.create<double>((a, b) => a + b);
 
   /// Create a monoid
-  final monoid = Monoid_<double>.define(() => 0.0, (a, b) => a + b);
+  final monoid = Monoid_.create<double>(() => 0.0, (a, b) => a + b);
 
   /// Create a group
   final group =
-      Group_<double>.define(() => 0.0, (a, b) => a + b, (a, b) => a - b);
+      Group_.create<double>(() => 0.0, (a, b) => a + b, (a, b) => a - b);
 
   /// Create a field
-  final field = Field_<double>.define(
-    Group_<double>.define(() => 0.0, (a, b) => a + b, (a, b) => a - b),
-    Group_<double>.define(() => 1.0, (a, b) => a * b, (a, b) => a / b),
+  final field = Field_.create<double>(
+    Group_.create<double>(() => 0.0, (a, b) => a + b, (a, b) => a - b),
+    Group_.create<double>(() => 1.0, (a, b) => a * b, (a, b) => a / b),
   );
 
   /// Monoids
