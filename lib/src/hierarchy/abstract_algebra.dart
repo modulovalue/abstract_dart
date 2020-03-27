@@ -1,4 +1,5 @@
 import 'package:abstract_dart/abstract_dart.dart';
+import 'package:abstract_dart/src/hierarchy/abstract_algebra_anonymous.dart';
 
 /// https://en.wikipedia.org/wiki/Semigroup
 ///
@@ -11,25 +12,11 @@ import 'package:abstract_dart/abstract_dart.dart';
 /// are the same sets. But in practice this
 ///
 abstract class Semigroup_<S> {
-  @Deprecated("use define")
-  static Semigroup_<S> create<S>(S Function(S a, S b) operation) {
-    return _AnonymousSemigroup(operation);
-  }
-
   const factory Semigroup_.define(
     S Function(S a, S b) operation,
-  ) = _AnonymousSemigroup;
+  ) = AnonymousSemigroup<S>;
 
   S operate(S a, S b);
-}
-
-class _AnonymousSemigroup<S> implements Semigroup_<S> {
-  final S Function(S a, S b) _operate;
-
-  const _AnonymousSemigroup(this._operate);
-
-  @override
-  S operate(S a, S b) => _operate(a, b);
 }
 
 /// https://en.wikipedia.org/wiki/Monoid
@@ -51,30 +38,12 @@ class _AnonymousSemigroup<S> implements Semigroup_<S> {
 /// * Each [Group_] is a [Monoid_]
 ///
 abstract class Monoid_<S> implements Semigroup_<S> {
-  @Deprecated("use define")
-  static Monoid_<S> create<S>(S Function() identity, S Function(S a, S b) operation) {
-    return _AnonymousMonoid(identity, operation);
-  }
-
   const factory Monoid_.define(
     S Function() identity,
     S Function(S a, S b) operation,
-  ) = _AnonymousMonoid;
+  ) = AnonymousMonoid<S>;
 
   S identity();
-}
-
-class _AnonymousMonoid<S> implements Monoid_<S> {
-  final S Function() _identity;
-  final S Function(S a, S b) _operate;
-
-  const _AnonymousMonoid(this._identity, this._operate);
-
-  @override
-  S identity() => _identity();
-
-  @override
-  S operate(S a, S b) => _operate(a, b);
 }
 
 /// https://en.wikipedia.org/wiki/Group_(mathematics)
@@ -95,35 +64,13 @@ class _AnonymousMonoid<S> implements Monoid_<S> {
 /// * Each [Field_] contains two [Group_]s
 ///
 abstract class Group_<S> implements Monoid_<S> {
-  @Deprecated("use define")
-  static Group_<S> create<S>(S Function() identity, S Function(S, S) operate, S Function(S, S) inverse) {
-    return _AnonymousGroup(identity, operate, inverse);
-  }
-
   const factory Group_.define(
     S Function() identity,
     S Function(S, S) operate,
     S Function(S, S) inverse,
-  ) = _AnonymousGroup;
+  ) = AnonymousGroup<S>;
 
   S inverse(S a, S b);
-}
-
-class _AnonymousGroup<S> implements Group_<S> {
-  final S Function() _identity;
-  final S Function(S a, S b) _operate;
-  final S Function(S a, S b) _inverse;
-
-  const _AnonymousGroup(this._identity, this._operate, this._inverse);
-
-  @override
-  S identity() => _identity();
-
-  @override
-  S operate(S a, S b) => _operate(a, b);
-
-  @override
-  S inverse(S a, S b) => _inverse(a, b);
 }
 
 /// https://en.wikipedia.org/wiki/Field_(mathematics)
@@ -136,30 +83,73 @@ class _AnonymousGroup<S> implements Group_<S> {
 /// * [NumField]
 ///
 abstract class Field_<A> {
-  @Deprecated("use define")
-  static Field_<S> create<S>(Group_<S> addition, Group_<S> multiplication) {
-    return _AnonymousField(addition, multiplication);
-  }
-
   const factory Field_.define(
     Group_<A> addition,
     Group_<A> multiplication,
-  ) = _AnonymousField;
+  ) = AnonymousField<A>;
 
   Group_<A> get addition;
 
   Group_<A> get multiplication;
 }
 
-class _AnonymousField<S> implements Field_<S> {
-  final Group_<S> _addition;
-  final Group_<S> _multiplication;
+/// A [Monoid_] with scalar multiplication
+abstract class Semispace_<K, F> {
+  const factory Semispace_.define(
+    Monoid_<K> addition,
+    K Function(K vector, F scalar) _scalarMultiplication,
+  ) = AnonymousSemispace<K, F>;
 
-  const _AnonymousField(this._addition, this._multiplication);
+  Monoid_<K> get addition;
+
+  K sOperate(K vector, F scalar);
+}
+
+/// A [Group_] with scalar multiplication
+abstract class VectorSpace_<K, F> {
+  const factory VectorSpace_.define(
+    Group_<K> _vectorAddition,
+    ScalarMonoid_<K, F> _scalarMonoid,
+  ) = AnonymousVectorSpace_<K, F>;
+
+  Group_<K> get addition;
+
+  ScalarMonoid_<K, F> get scalar;
+}
+
+/// A [Field_] with scalar multiplication.
+abstract class Algebra_<K, F> implements VectorSpace_<K, F>, Field_<K> {
+  const factory Algebra_.define(
+    Field_<K> _field,
+    ScalarMonoid_<K, F> _scalarMonoid,
+  ) = AnonymousAlgebra<K, F>;
+}
+
+// These interfaces use the concept of a scalar to say that
+// the second argument of the operation has a different type.
+
+/// Same as a [Semigroup_] but instead of operating on objects from the same set
+/// a [ScalarSemigroup_] operates on two types from different sets and returns
+/// the left type.
+abstract class ScalarSemigroup_<K, F> {
+  const factory ScalarSemigroup_.define(
+    K Function(K vector, F scalar) _scalarMultiplication,
+  ) = AnonymousScalarSemigroup<K, F>;
+
+  K sOperate(K vector, F scalar);
+}
+
+/// Same as a [Monoid_] but instead of operating on objects from the same set
+/// a [ScalarMonoid_] operates on two types from different sets and returns
+/// the left type as a result.
+abstract class ScalarMonoid_<K, F> implements ScalarSemigroup_<K, F> {
+  const factory ScalarMonoid_.define(
+    F Function() _scalarIndentity,
+    K Function(K vector, F scalar) _scalarMultiplication,
+  ) = AnonymousScalarMonoid<K, F>;
+
+  F sIdentity();
 
   @override
-  Group_<S> get addition => _addition;
-
-  @override
-  Group_<S> get multiplication => _multiplication;
+  K sOperate(K vector, F scalar);
 }
