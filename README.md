@@ -4,6 +4,8 @@
 
 A collection of algebraic structures borrowed from abstract algebra. Semigroup, Monoid, Group, Field, and more. 
 
+Take a look at [abstract_flutter](https://github.com/modulovalue/abstract_flutter) for Flutter structures.
+
 Example:
 ```dart
 /// Create a semigroup
